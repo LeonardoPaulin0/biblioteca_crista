@@ -227,7 +227,7 @@ p { line-height: 1.65; margin: 0 0 var(--space-md); color: var(--color-ink-soft)
 .paper-frame--tilt { transform: rotate(-2.5deg); }
 
 .hero__art { display: flex; justify-content: center; }
-.hero__art .paper-frame { max-width: 620px; transform: rotate(1deg); }
+.hero__art .paper-frame { max-width: 360px; transform: rotate(1deg); }
 
 /* -------------------- Trust strip -------------------- */
 .trust {
@@ -290,7 +290,7 @@ p { line-height: 1.65; margin: 0 0 var(--space-md); color: var(--color-ink-soft)
 
 .bonus__art {
   display: grid;
-  grid-template-columns: 1.8fr 2.5fr;
+  grid-template-columns: 1.1fr 1.6fr;
   gap: var(--space-md);
   align-items: end;
 }
