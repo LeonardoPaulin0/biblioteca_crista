@@ -3,7 +3,7 @@
 // ===========================================================
 
 // ⚠️ ALTERAR por produto: link de checkout (Cakto, Hotmart, Kiwify, etc.)
-const CHECKOUT_LINK = 'CHECKOUT_LINK_AQUI';
+const CHECKOUT_LINK = 'https://pay.cakto.com.br/w7eatim_952738';
 
 document.addEventListener('DOMContentLoaded', () => {
   applyCheckoutLink();
