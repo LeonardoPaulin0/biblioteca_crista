@@ -52,7 +52,7 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-img { max-width: 150%; display: block; }
+img { max-width: 100%; display: block; }
 
 .container {
   width: 100%;
@@ -212,24 +212,104 @@ p { line-height: 1.65; margin: 0 0 var(--space-md); color: var(--color-ink-soft)
 }
 .hero__badges li { display: flex; align-items: center; gap: 0.35rem; }
 
-/* moldura estilo "recorte de papel" para as imagens 
-.paper-frame {
+.hero__art { display: flex; justify-content: center; }
+
+/* Colagem do hero: 3 imagens em camadas — mockup ao fundo,
+   pastores e cavaleiro na frente, cada um com seu próprio recorte */
+.hero-collage {
   position: relative;
+  width: 100%;
+  max-width: 580px;
+  aspect-ratio: 1 / 1.05;
+}
+
+.hero-collage__item {
+  position: absolute;
+  border-radius: var(--radius-md);
+  
+  overflow: hidden;
+}
+
+.hero-collage__item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 10px;
+  display: block;
+}
+
+/* fundo: caixa do kit (mockup), maior, um pouco à esquerda */
+.hero-collage__item--mockup {
+  width: 76%;
+  left: 0;
+  top: 6%;
+  z-index: 1;
+}
+
+/* pastores, na frente, um pouco à esquerda, menor */
+.hero-collage__item--pastores {
+  width: 38%;
+  left: 2%;
+  bottom: 0;
+  z-index: 2;
+  transform: rotate(-3deg);
+}
+
+/* cavaleiro, na frente do mockup, um pouco à direita, tamanho médio */
+.hero-collage__item--cavaleiro {
+  width: 50%;
+  right: 0;
+  bottom: -3%;
+  z-index: 3;
+  transform: rotate(2deg);
+}
+
+/* -------------------- Carrossel "O que vem no kit" -------------------- */
+.acompanha { padding-bottom: var(--space-lg); }
+
+.carousel {
+  width: 100%;
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+}
+
+.carousel__track {
+  display: flex;
+  gap: var(--space-lg);
+  width: max-content;
+  animation: carousel-scroll 26s linear infinite;
+}
+
+/* pausa suave ao passar o mouse (desktop) */
+.carousel:hover .carousel__track { animation-play-state: paused; }
+
+.carousel__item {
+  flex: 0 0 260px;
   background: var(--color-white);
   border-radius: var(--radius-md);
-  padding: var(--space-md);
+  padding: var(--space-sm);
   box-shadow: var(--shadow-card);
-  /*border: 2px dashed var(--color-ink);
-} */
+}
 
-.paper-frame img { border-radius: 10px; }
+.carousel__item img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  border-radius: 10px;
+}
 
-.paper-frame--tilt { transform: rotate(-2.5deg); }
+@keyframes carousel-scroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); } /* -50% pois a lista está duplicada */
+}
 
-.hero__art { display: flex; justify-content: center; }
-.hero__art .paper-frame { max-width: 360px; transform: rotate(1deg); }
+@media (max-width: 600px) {
+  .carousel__item { flex-basis: 200px; }
+  .carousel__item img { height: 170px; }
+}
 
-/* -------------------- Trust strip -------------------- */
+
 .trust {
   background: var(--color-ink);
   color: var(--color-white);
@@ -279,23 +359,52 @@ p { line-height: 1.65; margin: 0 0 var(--space-md); color: var(--color-ink-soft)
 .step p { margin-bottom: 0; font-size: 0.95rem; }
 
 /* -------------------- Bonus -------------------- */
-.bonus__inner {
+.bonus__items {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xl);
+  max-width: 920px;
+  margin: 0 auto;
+}
+
+.bonus__item {
   display: grid;
-  grid-template-columns: 1.0fr 2.0fr;
-  gap: calc(var(--space-xl) * 1.2);
+  grid-template-columns: 240px 1fr;
+  gap: var(--space-lg);
   align-items: center;
 }
 
-.bonus__list { list-style: none; padding: 0; margin: 0; padding-right: var(--space-md); display: flex; flex-direction: column; gap: var(--space-xs); color: var(--color-ink-soft); }
+.bonus__item--reverse {
+  grid-template-columns: 1fr 240px;
+}
+.bonus__item--reverse .bonus__item-art { order: 2; }
+.bonus__item--reverse .bonus__item-copy { order: 1; }
 
-.bonus__art {
-  display: grid;
-  grid-template-columns: 1.1fr 1.6fr;
-  gap: var(--space-md);
-  align-items: end;
+.bonus__item-art {
+  background: var(--color-white);
+  border-radius: var(--radius-md);
+  padding: var(--space-md);
+  box-shadow: var(--shadow-card);
 }
 
-.paper-frame--small { padding: var(--space-sm); transform: rotate(3deg); }
+.bonus__item-art img {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+
+.bonus__tag {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-gold-dark);
+  margin-bottom: var(--space-3xs);
+}
+
+.bonus__item-copy h3 { margin-bottom: var(--space-xs); }
+.bonus__item-copy p { margin-bottom: 0; }
 
 /* -------------------- Depoimentos -------------------- */
 .depoimentos__grid {
@@ -467,8 +576,15 @@ p { line-height: 1.65; margin: 0 0 var(--space-md); color: var(--color-ink-soft)
   .hero__inner { grid-template-columns: 1fr; }
   .hero__art { order: -1; }
   .steps { grid-template-columns: repeat(2, 1fr); }
-  .bonus__inner { grid-template-columns: 1fr; }
-  .bonus__art { grid-template-columns: 1fr 1fr; }
+  .bonus__item,
+  .bonus__item--reverse {
+    grid-template-columns: 1fr;
+    text-align: center;
+    justify-items: center;
+  }
+  .bonus__item--reverse .bonus__item-art { order: 1; }
+  .bonus__item--reverse .bonus__item-copy { order: 2; }
+  .bonus__item-art { max-width: 220px; }
   .depoimentos__grid { grid-template-columns: 1fr; }
   .garantia__inner { flex-direction: column; text-align: center; }
 }
