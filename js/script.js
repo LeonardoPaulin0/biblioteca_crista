@@ -29,20 +29,26 @@ function applyCheckoutLink() {
  * fazem scroll suave até #oferta em vez de ir direto ao checkout.
  * O último botão (dentro da oferta final) vai direto para o link de pagamento.
  */
+/**
+ * Comportamento desejado:
+ * - Apenas o botão dentro de `#oferta` deve enviar diretamente ao checkout.
+ * - Todos os outros botões com `data-checkout-link` devem rolar suavemente
+ *   até a seção `#oferta`.
+ */
 function applyScrollOffer() {
   const buttons = Array.from(document.querySelectorAll('[data-checkout-link]'));
-  const lastIndex = buttons.length - 1;
+  const ofertaButton = document.querySelector('#oferta [data-checkout-link]');
 
-  buttons.forEach((btn, index) => {
+  buttons.forEach((btn) => {
     btn.addEventListener('click', (event) => {
-      if (index === lastIndex) {
+      if (ofertaButton && btn === ofertaButton) {
+        // botão da oferta: vai direto ao checkout
         window.location.href = btn.dataset.href;
       } else {
+        // outros botões: rolam até a seção de oferta
         event.preventDefault();
         const oferta = document.querySelector('#oferta');
-        if (oferta) {
-          oferta.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
+        if (oferta) oferta.scrollIntoView({ behavior: 'smooth', block: 'start' });
       }
     });
   });
