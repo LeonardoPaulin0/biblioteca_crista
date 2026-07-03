@@ -53,28 +53,41 @@ function applyScrollOffer() {
     });
   });
 }
-
 /**
- * Lê data-price e data-price-old do <body> e preenche os elementos de preço.
- * Nunca hardcodear preço em outro lugar do HTML.
+ * Lê data-price, data-installments e data-installment-value do <body>
+ * e preenche os elementos de preço em toda a página.
+ *
+ * - data-price            → valor total à vista (ex: "19,90")
+ * - data-installments     → quantidade de parcelas (ex: "4")
+ * - data-installment-value→ valor de cada parcela, informado manualmente
+ *                           por você (ex: "4,97"), pois o checkout aplica
+ *                           juros diferentes por produto e esse valor
+ *                           não é calculado automaticamente aqui.
+ *
+ * Nunca hardcodear preço em outro lugar do HTML — sempre editar esses
+ * três atributos no <body>.
  */
 function applyPrice() {
   const body = document.body;
-  const current = body.dataset.price;
-  const old = body.dataset.priceOld;
+  const priceAvista = body.dataset.price;
+  const installments = body.dataset.installments;
+  const installmentValue = body.dataset.installmentValue;
 
-  if (current) {
+  if (priceAvista) {
     document.querySelectorAll('[data-price-current]').forEach((el) => {
-      el.textContent = `R$ ${current}`;
+      el.textContent = `R$ ${priceAvista}`;
     });
   }
 
-  if (old) {
-    document.querySelectorAll('[data-price-current]').forEach((el) => {
-      const oldEl = document.createElement('span');
-      oldEl.className = 'price__old';
-      oldEl.textContent = `R$ ${old}`;
-      el.insertAdjacentElement('beforebegin', oldEl);
+  if (installments) {
+    document.querySelectorAll('[data-installment-count]').forEach((el) => {
+      el.textContent = installments;
+    });
+  }
+
+  if (installmentValue) {
+    document.querySelectorAll('[data-installment-price]').forEach((el) => {
+      el.textContent = `R$ ${installmentValue}`;
     });
   }
 }
