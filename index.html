@@ -51,10 +51,11 @@ fbq('track', 'PageView');
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Inter:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="css/style.css">
 </head>
-<body data-price="19,90" data-price-old="97,90">
+<body data-price="19,90" data-installments="4" data-installment-value="5,82">
 
 <!-- Meta Pixel noscript -->
 <noscript><img height="1" width="1" style="display:none"
@@ -84,9 +85,10 @@ src="https://www.facebook.com/tr?id=SEU_PIXEL_ID_AQUI&ev=PageView&noscript=1"
 
         <div class="hero__price">
           <span class="price">
-            <span class="price__current" data-price-current>R$ 19,90</span>
+            <span class="price__parcela-label">em até <span data-installment-count>4</span>x de</span>
+            <span class="price__current" data-installment-price>R$ 4,97</span>
+            <span class="price__note">ou <span data-price-current>R$ 19,90</span> à vista</span>
           </span>
-          <span class="price__note">acesso imediato após a compra</span>
         </div>
 
         <button class="btn btn--primary btn--large" data-checkout-link>Quero meu kit agora</button>
@@ -166,7 +168,7 @@ src="https://www.facebook.com/tr?id=SEU_PIXEL_ID_AQUI&ev=PageView&noscript=1"
       </div>
     </div>
 
-       <div class="carousel reveal">
+     <div class="carousel reveal">
       <div class="carousel__track">
         <!-- ⚠️ Troque/adicione os arquivos abaixo pelos que você já tem em assets/images -->
         <div class="carousel__item">
@@ -206,6 +208,20 @@ src="https://www.facebook.com/tr?id=SEU_PIXEL_ID_AQUI&ev=PageView&noscript=1"
         <div class="carousel__item" aria-hidden="true">
           <img src="assets/images/sara.jpg" alt="" loading="lazy">
         </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section hero-images">
+    <div class="container">
+      <div class="hero-images__item reveal">
+        <img src="assets/images/knight-cavaleiro.jpg" alt="Bonequinho do Cavaleiro da Armadura de Deus" loading="lazy">
+      </div>
+      <div class="hero-images__item reveal">
+        <img src="assets/images/mockup.jpg" alt="Mockup do kit bíblico em papercraft" loading="lazy">
+      </div>
+      <div class="hero-images__item reveal">
+        <img src="assets/images/pastores-fogueira.jpg" alt="Pastores em papercraft ao redor da fogueira" loading="lazy">
       </div>
     </div>
   </section>
@@ -278,12 +294,15 @@ src="https://www.facebook.com/tr?id=SEU_PIXEL_ID_AQUI&ev=PageView&noscript=1"
         <!-- ⚠️ Depoimentos de exemplo — troque pelos depoimentos reais dos seus clientes antes de publicar -->
         <blockquote class="depoimento reveal">
           <p>"Imprimi um domingo à noite e as crianças passaram a tarde inteira montando e brincando. Melhor que muito brinquedo pronto."</p>
+
         </blockquote>
         <blockquote class="depoimento reveal">
           <p>"Uso na EBD com a minha turma. Fica um trabalho lindo e ainda ajuda a fixar a história bíblica."</p>
+
         </blockquote>
         <blockquote class="depoimento reveal">
           <p>"O presépio de bônus ficou tão bonito que virou enfeite da nossa sala esse Natal."</p>
+
         </blockquote>
       </div>
     </div>
@@ -297,6 +316,25 @@ src="https://www.facebook.com/tr?id=SEU_PIXEL_ID_AQUI&ev=PageView&noscript=1"
         <h2>Garantia de 7 dias</h2>
         <p>Se por qualquer motivo o kit não for o que você esperava, é só pedir reembolso em até 7 dias após a compra. Simples assim, sem burocracia.</p>
       </div>
+    </div>
+  </section>
+
+  <!-- OFERTA FINAL / CHECKOUT -->
+
+    <section class="section oferta" id="oferta">
+    <div class="container oferta__inner reveal">
+      <span class="eyebrow eyebrow--light">Oferta especial</span>
+      <h2>Leve seu Kit Bíblico pra Montar agora</h2>
+      <p>Cavaleiro da Armadura de Deus + Presépio completo em papercraft, em PDF pronto para imprimir.</p>
+
+      <div class="oferta__price">
+        <span class="price__parcela-label price__parcela-label--light">em até <span data-installment-count>4</span>x de</span>
+        <span class="price__current price__current--light" data-installment-price>R$ 4,97</span>
+        <span class="price__note price__note--light">ou <span data-price-current>R$ 19,90</span> à vista</span>
+      </div>
+
+      <button class="btn btn--primary btn--large" data-checkout-link>Quero montar com meus filhos</button>
+      <p class="oferta__garantia">🛡️ Garantia de 7 dias · Compra 100% segura</p>
     </div>
   </section>
 
@@ -358,24 +396,6 @@ src="https://www.facebook.com/tr?id=SEU_PIXEL_ID_AQUI&ev=PageView&noscript=1"
     </div>
   </section>
 
-  <!-- OFERTA FINAL / CHECKOUT -->
-  <section class="section oferta" id="oferta">
-    <div class="container oferta__inner reveal">
-      <span class="eyebrow eyebrow--light">Oferta especial</span>
-      <h2>Leve seu Kit Bíblico pra Montar agora</h2>
-      <p>Cavaleiro da Armadura de Deus + Presépio completo em papercraft + Kit Bonecos Bíblicos, em PDF pronto para imprimir.</p>
-
-      <div class="oferta__price">
-        <span class="price__current price__current--light" data-price-current>R$ 19,90</span>
-        <br> 
-        <span class="price__note price__note--light">pagamento único · acesso imediato</span>
-      </div>
-
-      <button class="btn btn--primary btn--large" data-checkout-link>Quero montar com meus filhos</button>
-      <p class="oferta__garantia">🛡️ Garantia de 7 dias · Compra 100% segura</p>
-    </div>
-  </section>
-
 </main>
 
 <!-- FOOTER -->
@@ -389,7 +409,8 @@ src="https://www.facebook.com/tr?id=SEU_PIXEL_ID_AQUI&ev=PageView&noscript=1"
 <!-- STICKY CTA MOBILE -->
 <div class="sticky-cta" id="stickyCta">
   <div class="sticky-cta__info">
-    <span class="sticky-cta__price" data-price-current>R$ 19,90</span>
+    <span class="sticky-cta__installment"><span data-installment-count>4</span>x de <strong data-installment-price>R$ 4,97</strong></span>
+    <span class="sticky-cta__note">ou <span data-price-current>R$ 19,90</span> à vista</span>
   </div>
   <button class="btn btn--primary" data-checkout-link>Quero montar agora</button>
 </div>
